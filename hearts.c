@@ -525,7 +525,6 @@ void adjust_for_moonshot( round *round ) {
 void play_game( card deck[ DECK_SIZE ], player players[ PLAYERS ] ) {
     round round = { .hearts_opened = false, .turn = 0 };
     game game   = { .current_round = round, .current_round_num = 1 };
-    unsigned int games_played = 0;
 
     card played_cards[ PLAYERS ]               = { 0 };
     card given_cards[ PLAYERS ][ CARDS_GIVEN ] = { 0 };
@@ -555,7 +554,7 @@ void play_game( card deck[ DECK_SIZE ], player players[ PLAYERS ] ) {
         game.scores[ winner ] += calculate_trick_points( played_cards );
         starter = winner;
         for ( size_t i = 0; i < 12; i++ ) {
-            printf( "Trick %d \n", i + 2 );
+            printf( "Trick %lu \n", i + 2 );
             regular_turn( starter, players, &round, played_cards );
             winner = determine_trick_winner( starter, played_cards );
 
